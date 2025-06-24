@@ -7,37 +7,61 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        ListaCanciones()
+// MODELO
+struct Tarea: Identifiable {
+    let id = UUID()
+    let titulo: String
+    var completada: Bool
+}
+
+// VIEWMODEL
+class TareasManager: ObservableObject {
+    @Published var tareas: [Tarea] = [
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Escuchar música", completada: true)
+    ]
+    
+    func toggleTarea(id: UUID) {
+        if let index = tareas.firstIndex(where: { $0.id == id }) {
+            tareas[index].completada.toggle()
+        }
     }
 }
 
-//Identifiable
-struct Cancion: Identifiable{
-    let id = UUID()
-    let titulo: String
-    let imagenNombre: String
-    let artista: String
-}
-
-//el ARRAY
-struct ListaCanciones: View{
-    let canciones = [
-        Cancion(titulo: "Cruel Summer", imagenNombre: "Curel_Summer", artista: "Taylor Swift"),
-        Cancion(titulo: "August", imagenNombre: "august", artista: "Taylor Swift"),
-        Cancion(titulo: "Cardigan", imagenNombre: "Cardigan", artista: "Taylor Swift")
-    ]
-    var body: some View{
-        ScrollView{
-            ForEach(canciones) { cancion in
-                VStack {
-                    Image(cancion.imagenNombre)
-                    Text(cancion.titulo)
-                    Text(cancion.artista)
+// VISTA PRINCIPAL
+struct ListaDeTareas: View {
+    @StateObject var manager = TareasManager()
+    
+    var body: some View {
+        VStack {
+            Text("Mis Tareas")
+                .font(.title)
+                .padding()
+            
+            List {
+                ForEach(manager.tareas) { tarea in
+                    HStack {
+                        Text(tarea.titulo)
+                            .strikethrough(tarea.completada) // tachado si está completada
+                        Spacer()
+                        Button(action: {
+                            manager.toggleTarea(id: tarea.id)
+                        }) {
+                            Image(systemName: tarea.completada ? "checkmark.circle.fill" : "circle")
+                                .foregroundColor(tarea.completada ? .green : .gray)
+                        }
+                    }
                 }
             }
         }
+    }
+}
+
+// INICIO
+struct ContentView: View {
+    var body: some View {
+        ListaDeTareas()
     }
 }
 
