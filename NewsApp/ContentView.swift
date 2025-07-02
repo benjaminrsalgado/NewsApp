@@ -269,6 +269,7 @@ struct ListaDeTareas: View {
             }
         }
     }
+    
 }
 
 // INICIO
