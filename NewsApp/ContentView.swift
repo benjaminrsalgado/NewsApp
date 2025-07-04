@@ -21,6 +21,21 @@ class TareasManager: ObservableObject {
         Tarea(titulo: "Hacer ejercicio", completada: false),
         Tarea(titulo: "Escuchar música", completada: true),
         Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Escuchar música", completada: true),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Escuchar música", completada: true),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
+        Tarea(titulo: "Hacer ejercicio", completada: false),
+        Tarea(titulo: "Escuchar música", completada: true),
+        Tarea(titulo: "Estudiar SwiftUI", completada: false),
         Tarea(titulo: "Hacer ejercicio", completada: false)
   
     ]
